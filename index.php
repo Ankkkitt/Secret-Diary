@@ -11,26 +11,14 @@ if(isset($_POST['submit'])){
   //password protection required
   $password_encrypt = password_hash($password, PASSWORD_BCRYPT);
   
-  // to check whether entered email does not exist already.
-  $email_query = "SELECT * FROM signup WHERE email='$email' ";
-  $query = mysqli_query($con, $email_query);
-
-  $emailCount = mysqli_num_rows($query);
-
-  if($emailCount > 0){
-    ?>
-    <script>
-      alert("Email already exists !!");
-    </script>
-    <?php
-  }else{
-    $sql = " INSERT INTO `signup` (`name`, `email`, `pass`) VALUES ('$name', '$email', '$password_encrypt')";
+  
+    $sql = " INSERT INTO `signup` (`name`, `email`, `pass`, `notes`) VALUES ('$name', '$email', '$password_encrypt', ' ')";
     $sqlQuery = mysqli_query($con, $sql);
 
     if($sqlQuery){
       ?>
         <script>
-          alert("You have successfully registered on Apna Diary");
+          alert("You have successfully registered on Secret Diary");
           window.location.href='login.php';
         </script>
       <?php
@@ -43,7 +31,6 @@ if(isset($_POST['submit'])){
     }
   }
 
-}
 
 
 
